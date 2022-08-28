@@ -1,10 +1,11 @@
-<h1 class="font-bold my-12">Post Title</h1>
+<h1 class="font-bold my-12">All About Me!</h1>
 
 <p class="mb-8">
-	<a href="https://minimalissimo.shop/product/minimalist-writer-ii" target="_blank"
-		>https://minimalissimo.shop/product/minimalist-writer-ii</a
+	This template is inspired by the amazing <a
+		href="https://minimalissimo.shop/product/minimalist-writer-ii"
+		target="_blank">https://minimalissimo.shop/product/minimalist-writer-ii</a
 	>
-	by <a href="https://manuelmoreale.com/">Manuel Moreale</a>.
+	created by <a href="https://manuelmoreale.com/">Manuel Moreale</a>.
 </p>
 
 <p class="mb-8">

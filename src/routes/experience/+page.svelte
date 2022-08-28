@@ -1,10 +1,10 @@
-<h1 class="font-bold my-12">Post Title</h1>
+<h1 class="font-bold my-12">Take a gander at what I've done so far!</h1>
 
 <p class="mb-8">
 	<a href="https://minimalissimo.shop/product/minimalist-writer-ii" target="_blank"
 		>https://minimalissimo.shop/product/minimalist-writer-ii</a
 	>
-	by <a href="https://manuelmoreale.com/">Manuel Moreale</a>.
+	<a href="https://manuelmoreale.com/">Manuel Moreale</a>.
 </p>
 
 <p class="mb-8">
