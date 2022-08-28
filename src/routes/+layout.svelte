@@ -1,7 +1,35 @@
 <script lang="ts">
 	import '../app.postcss';
-	import ThemeButton from '../lib/themeButton.svelte';
+	import ThemeButton from '../lib/ThemeButton/index.svelte';
+	import { themeState } from '../stores/theme';
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		themeState.useLocalStorage();
+		if (!('theme' in localStorage)) {
+			if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				themeState.set('dark');
+			} else {
+				themeState.set('light');
+			}
+		}
+	});
 </script>
+
+<svelte:head>
+	<script>
+		if (!('theme' in localStorage)) {
+			if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.classList.add('dark');
+			}
+		} else {
+			let $themeState = localStorage.getItem('theme');
+			if ($themeState == 'dark') {
+				document.documentElement.classList.add('dark');
+			}
+		}
+	</script>
+</svelte:head>
 
 <div
 	class="main-container font-sans text-gray-700 bg-[#E0E2DC] dark:text-gray-100 dark:bg-[#2d2f31] h-min-screen"

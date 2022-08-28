@@ -1,32 +1,10 @@
-<script lang="ts" context="module">
-	import { browser } from '$app/environment';
+<script lang="ts">
+	import { themeState } from '../../stores/theme';
 
-	let themeState: boolean;
-
-	// On page load or when changing themes, best to add inline in `head` to avoid FOUC
-	if (browser) {
-		if (
-			localStorage.getItem('color-theme') === 'dark' ||
-			(!('color-theme' in localStorage) &&
-				window.matchMedia('(prefers-color-scheme: dark)').matches)
-		) {
-			themeState = false;
-			document.body.classList.add('dark');
-		} else {
-			themeState = true;
-			document.body.classList.remove('dark');
-		}
-	}
+	let themeInput: boolean = $themeState == 'dark' ? false : true;
 
 	function toggleTheme() {
-		if (themeState) {
-			localStorage.setItem('color-theme', 'dark');
-			document.body.classList.add('dark');
-		}
-		if (!themeState) {
-			localStorage.setItem('color-theme', 'light');
-			document.body.classList.remove('dark');
-		}
+		themeInput ? themeState.set('dark') : themeState.set('light');
 	}
 </script>
 
@@ -34,7 +12,7 @@
 <div class="flex flex-col items-center absolute top-0 right-0 p-8">
 	<div />
 	<label class="switch bg-[#2d2f31] dark:bg-[#E0E2DC]">
-		<input on:click={toggleTheme} bind:checked={themeState} type="checkbox" />
+		<input on:click={toggleTheme} bind:checked={themeInput} type="checkbox" />
 		<div>
 			<svg id="moon" viewBox="0 0 29 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path
@@ -95,6 +73,8 @@
 	.switch div > #sun {
 		opacity: 0;
 	}
+
+	/* The :checked state does not trigger when the checked value is driven via store updates */
 
 	.switch input:checked + div > #sun {
 		opacity: 1;
