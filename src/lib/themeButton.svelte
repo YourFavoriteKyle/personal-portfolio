@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 	import { browser } from '$app/environment';
 
-	let themeState: boolean = true;
+	let themeState: boolean;
 
 	// On page load or when changing themes, best to add inline in `head` to avoid FOUC
 	if (browser) {
@@ -20,9 +20,11 @@
 
 	function toggleTheme() {
 		if (themeState) {
+			localStorage.setItem('color-theme', 'dark');
 			document.body.classList.add('dark');
 		}
 		if (!themeState) {
+			localStorage.setItem('color-theme', 'light');
 			document.body.classList.remove('dark');
 		}
 	}
@@ -31,7 +33,7 @@
 <!-- Pin to top right corner -->
 <div class="flex flex-col items-center absolute top-0 right-0 p-8">
 	<div />
-	<label class="switch bg-[#2d2f31] dark:bg-[#dce0e3]">
+	<label class="switch bg-[#2d2f31] dark:bg-[#E0E2DC]">
 		<input on:click={toggleTheme} bind:checked={themeState} type="checkbox" />
 		<div>
 			<svg id="moon" viewBox="0 0 29 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +43,7 @@
 				/>
 			</svg>
 			<svg id="sun" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<circle cx="20" cy="20" r="20" fill="#dce0e3" />
+				<circle cx="20" cy="20" r="20" fill="#E0E2DC" />
 			</svg>
 		</div>
 	</label>
@@ -106,28 +108,5 @@
 		-webkit-transform: translate3d(10%, 0, 0);
 		-moz-transform: translate3d(10%, 0, 0);
 		transform: translate3d(10%, 0, 0);
-	}
-
-	:root {
-		--gray-5: #010101; /*dark*/
-		--gray-10: #040404;
-		--gray-15: #070808;
-		--gray-20: #0d0d0e;
-		--gray-25: #141516;
-		--gray-30: #1e2022;
-		--gray-35: #2d2f31;
-		--gray-40: #404346;
-		--gray-45: #5b5e62;
-		--gray-50: #7c8084;
-		--gray-55: #9da1a5;
-		--gray-60: #b9bdc1;
-		--gray-65: #cdd1d5;
-		--gray-70: #dce0e3;
-		--gray-75: #e7eaed;
-		--gray-80: #eff2f5;
-		--gray-85: #f4f7fa;
-		--gray-90: #f7fafd;
-		--gray-95: #fcfefe; /*light*/
-		--animate: 200ms;
 	}
 </style>

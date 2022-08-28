@@ -4,7 +4,7 @@
 </script>
 
 <div
-	class="main-container font-sans text-gray-700 bg-gray-100 dark:text-gray-100 dark:bg-[#2d2f31] h-min-screen"
+	class="main-container font-sans text-gray-700 bg-[#E0E2DC] dark:text-gray-100 dark:bg-[#2d2f31] h-min-screen"
 >
 	<div class="flex flex-wrap p-16">
 		<div class="w-full md:w-1/2 md:pr-32 order-3 md:order-1">
@@ -90,8 +90,7 @@
 		}
 
 		a:focus {
-			outline: none;
-			background: #e9d8fd;
+			outline: #9f7aea dashed 3px;
 		}
 	</style>
 </div>
