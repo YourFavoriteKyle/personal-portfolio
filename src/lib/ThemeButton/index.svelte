@@ -11,17 +11,28 @@
 <!-- Pin to top right corner -->
 <div class="flex flex-col items-center absolute top-0 right-0 p-8">
 	<div />
-	<label class="switch bg-[#2d2f31] dark:bg-[#E0E2DC]">
+	<label class="switch bg-primary-dark dark:bg-primary-light">
 		<input on:click={toggleTheme} bind:checked={themeInput} type="checkbox" />
 		<div>
-			<svg id="moon" viewBox="0 0 29 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<svg
+				class="fill-primary-dark"
+				id="moon"
+				viewBox="0 0 29 40"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
 				<path
 					d="M28.0039 1.6659C25.553 0.594427 22.8459 0 20 0C8.9543 0 0 8.9543 0 20C0 31.0457 8.9543 40 20 40C22.8459 40 25.553 39.4056 28.0039 38.3341C23.0809 33.7682 20 27.2439 20 20C20 12.7561 23.0809 6.23175 28.0039 1.6659Z"
-					fill="#2d2f31"
 				/>
 			</svg>
-			<svg id="sun" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<circle cx="20" cy="20" r="20" fill="#E0E2DC" />
+			<svg
+				class="fill-primary-light"
+				id="sun"
+				viewBox="0 0 40 40"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<circle cx="20" cy="20" r="20" />
 			</svg>
 		</div>
 	</label>

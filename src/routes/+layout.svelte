@@ -32,28 +32,47 @@
 </svelte:head>
 
 <div
-	class="main-container font-sans text-gray-700 bg-[#E0E2DC] dark:text-gray-100 dark:bg-[#2d2f31] h-min-screen"
+	class="main-container font-sans text-primary-dark bg-primary-light dark:text-primary-light dark:bg-primary-dark h-min-screen"
 >
 	<div class="flex flex-wrap p-16">
 		<div class="w-full md:w-1/2 md:pr-32 order-3 md:order-1">
 			<div
-				class="max-w-md md:float-right md:text-right leading-loose tracking-tight md:sticky md:top-0 "
+				class="max-w-md h-[calc(100vh-8rem)] flex flex-col justify-between md:float-right md:text-right leading-loose tracking-right md:sticky md:top-16"
 			>
-				<h2 class="font-bold my-4 md:my-12">Article List Column</h2>
-				<ul class="flex flex-wrap justify-between flex-col">
-					<li>
-						<!-- svelte-ignore a11y-invalid-attribute -->
-						<a href="/" class="nav">Home</a>
-					</li>
-					<li>
-						<!-- svelte-ignore a11y-invalid-attribute -->
-						<a href="about" class="nav">About Me</a>
-					</li>
-					<li>
-						<!-- svelte-ignore a11y-invalid-attribute -->
-						<a href="experience" class="nav">Experience</a>
-					</li>
-				</ul>
+				<div class="md:relative md:top-0">
+					<h2 class="font-bold my-4 md:my-12">Article List Column</h2>
+					<ul class="flex flex-wrap justify-between flex-col">
+						<li>
+							<!-- svelte-ignore a11y-invalid-attribute -->
+							<a href="/" class="nav">Home</a>
+						</li>
+						<li>
+							<!-- svelte-ignore a11y-invalid-attribute -->
+							<a href="about" class="nav">About Me</a>
+						</li>
+						<li>
+							<!-- svelte-ignore a11y-invalid-attribute -->
+							<a href="experience" class="nav">Experience</a>
+						</li>
+						<li>
+							<!-- svelte-ignore a11y-invalid-attribute -->
+							<a href="experience" class="nav">Contact</a>
+						</li>
+					</ul>
+				</div>
+				<div class="md:relative md:bottom-0">
+					<h2 class="font-bold my-4 md:my-12">Socials</h2>
+					<ul class="flex flex-wrap justify-between flex-col">
+						<li>
+							<!-- svelte-ignore a11y-invalid-attribute -->
+							<a href="about" class="nav">GitHub</a>
+						</li>
+						<li>
+							<!-- svelte-ignore a11y-invalid-attribute -->
+							<a href="/" class="nav">LinkedIn</a>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<div class="w-full md:w-1/2 order-1 md:order-2">
@@ -64,61 +83,71 @@
 	</div>
 
 	<ThemeButton />
-
-	<style>
-		.main-container {
-			-webkit-transition: all 300ms ease-in-out;
-			-moz-transition: all 300ms ease-in-out;
-			-ms-transition: all 300ms ease-in-out;
-			-o-transition: all 300ms ease-in-out;
-			transition: all 300ms ease-in-out;
-		}
-		::selection {
-			background: #e9d8fd;
-			color: #202684;
-
-			/* WebKit/Blink Browsers */
-		}
-
-		::-moz-selection {
-			background: #e9d8fd;
-			color: #202684;
-			/* Gecko Browsers */
-		}
-
-		a:not(.nav) {
-			font-weight: bold;
-			text-decoration: none;
-			padding: 2px;
-			background: linear-gradient(to right, #5a67d8, #5a67d8);
-			background-repeat: repeat-x;
-			background-size: 100% 2px;
-			background-position: 0 95%;
-			-webkit-transition: all 150ms ease-in-out;
-			-moz-transition: all 150ms ease-in-out;
-			-ms-transition: all 150ms ease-in-out;
-			-o-transition: all 150ms ease-in-out;
-			transition: all 150ms ease-in-out;
-		}
-
-		a:hover {
-			color: #b794f4;
-			font-weight: bold;
-			text-decoration: none;
-			padding-bottom: 2px;
-			background: linear-gradient(to right, #9f7aea, #e9d8fd);
-			background-repeat: repeat-x;
-			background-size: 100% 2px;
-			background-position: 50% 95%;
-			-webkit-transition: color 150ms ease-in-out;
-			-moz-transition: color 150ms ease-in-out;
-			-ms-transition: color 150ms ease-in-out;
-			-o-transition: color 150ms ease-in-out;
-			transition: color 150ms ease-in-out;
-		}
-
-		a:focus {
-			outline: #9f7aea dashed 3px;
-		}
-	</style>
 </div>
+
+<style>
+	.main-container {
+		-webkit-transition: all 300ms ease-in-out;
+		-moz-transition: all 300ms ease-in-out;
+		-ms-transition: all 300ms ease-in-out;
+		-o-transition: all 300ms ease-in-out;
+		transition: all 300ms ease-in-out;
+	}
+	:global(:root.dark::selection) {
+		background: #e0e2dc;
+		color: #2d2f31;
+
+		/* WebKit/Blink Browsers */
+	}
+	:global(:root.dark::-moz-selection) {
+		background: #e0e2dc;
+		color: #2d2f31;
+		/* Gecko Browsers */
+	}
+	:global(:root:not(.dark)::selection) {
+		background: #2d2f31;
+		color: #e0e2dc;
+
+		/* WebKit/Blink Browsers */
+	}
+	:global(:root:not(.dark)::-moz-selection) {
+		background: #2d2f31;
+		color: #e0e2dc;
+
+		/* WebKit/Blink Browsers */
+	}
+	:global(a:not(.nav)) {
+		overflow-wrap: break-word;
+		white-space: pre-line;
+		font-weight: bold;
+		text-decoration: none;
+		padding: 2px;
+		background: linear-gradient(to right, #e24e1b, #e24e1b);
+		background-repeat: repeat-x;
+		background-size: 100% 2px;
+		background-position: 0 95%;
+		-webkit-transition: all 150ms ease-in-out;
+		-moz-transition: all 150ms ease-in-out;
+		-ms-transition: all 150ms ease-in-out;
+		-o-transition: all 150ms ease-in-out;
+		transition: all 150ms ease-in-out;
+	}
+	:global(a:hover) {
+		color: #e16c46;
+		font-weight: bold;
+		text-decoration: none;
+		padding-bottom: 2px;
+		background: linear-gradient(to right, #e16c46, #f0a776);
+		background-repeat: repeat-x;
+		background-size: 100% 2px;
+		background-position: 50% 95%;
+		-webkit-transition: color 150ms ease-in-out;
+		-moz-transition: color 150ms ease-in-out;
+		-ms-transition: color 150ms ease-in-out;
+		-o-transition: color 150ms ease-in-out;
+		transition: color 150ms ease-in-out;
+	}
+	a:focus {
+		outline: #e16c46 dashed 3px;
+	}
+</style>
