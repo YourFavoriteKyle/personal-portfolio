@@ -34,10 +34,10 @@
 <div
 	class="main-container font-sans text-primary-dark bg-primary-light dark:text-primary-light dark:bg-primary-dark h-min-screen"
 >
-	<div class="flex flex-wrap p-16">
+	<div class="flex flex-wrap p-16 md:p-28">
 		<div class="w-full md:w-1/2 md:pr-32 order-3 md:order-1">
 			<div
-				class="max-w-md h-[calc(100vh-8rem)] flex flex-col justify-between md:float-right md:text-right leading-loose tracking-right md:sticky md:top-16"
+				class="max-w-md md:h-[calc(100vh-14rem)] flex flex-col justify-between md:float-right md:text-right leading-loose tracking-right md:sticky md:top-28"
 			>
 				<div class="md:relative md:top-0">
 					<h2 class="font-bold my-4 md:my-12">Article List Column</h2>

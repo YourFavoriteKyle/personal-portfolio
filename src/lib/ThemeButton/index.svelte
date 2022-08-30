@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { themeState } from '../../stores/theme';
 
-	let themeInput: boolean = $themeState == 'dark' ? false : true;
+	let themeInput: boolean;
+
+	themeState.subscribe(() => {
+		themeInput = $themeState == 'dark' ? false : true;
+	});
 
 	function toggleTheme() {
 		themeInput ? themeState.set('dark') : themeState.set('light');
@@ -9,7 +13,7 @@
 </script>
 
 <!-- Pin to top right corner -->
-<div class="flex flex-col items-center absolute top-0 right-0 p-8">
+<div class="flex flex-col items-center absolute md:fixed top-0 right-0 p-8">
 	<div />
 	<label class="switch bg-primary-dark dark:bg-primary-light">
 		<input on:click={toggleTheme} bind:checked={themeInput} type="checkbox" />
