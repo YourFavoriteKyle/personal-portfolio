@@ -35,7 +35,7 @@
 	class="main-container font-sans text-primary-dark bg-primary-light dark:text-primary-light dark:bg-primary-dark h-min-screen"
 >
 	<div class="flex flex-wrap p-16 md:p-28">
-		<div class="w-full md:w-1/2 md:pr-32 order-3 md:order-1">
+		<div class="w-full md:w-1/3 md:pr-32 order-3 md:order-1">
 			<div
 				class="max-w-md md:h-[calc(100vh-14rem)] flex flex-col justify-between md:float-right md:text-right leading-loose tracking-right md:sticky md:top-28"
 			>
@@ -75,8 +75,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="w-full md:w-1/2 order-1 md:order-2">
-			<div class="max-w-md leading-loose tracking-tight">
+		<div class="w-full md:w-2/3 order-1 md:order-2">
+			<div class="max-w-2xl leading-loose tracking-tight">
 				<slot />
 			</div>
 		</div>
