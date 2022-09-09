@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '../app.postcss';
 	import ThemeButton from '../lib/ThemeButton/index.svelte';
+	import { addAnimation } from '../lib/Animation';
 	import { themeState } from '../stores/theme';
 	import { onMount } from 'svelte';
 
@@ -13,8 +14,16 @@
 				themeState.set('light');
 			}
 		}
+
+		addAnimation(document.querySelectorAll<HTMLElement>('[animation-type]'));
 	});
 </script>
+
+<svelte:window
+	on:scroll={() => {
+		addAnimation(document.querySelectorAll('[animation-type]'));
+	}}
+/>
 
 <svelte:head>
 	<script>
@@ -39,7 +48,11 @@
 			<div
 				class="max-w-md md:h-[calc(100vh-14rem)] flex flex-col justify-between md:float-right md:text-right leading-loose tracking-right md:sticky md:top-28"
 			>
-				<div class="md:relative md:top-0">
+				<div
+					class="md:relative md:top-0 opacity-0"
+					animation-type="animate__fadeInLeft"
+					animation-delay="250ms"
+				>
 					<h2 class="font-bold my-4 md:my-12">Article List Column</h2>
 					<ul class="flex flex-wrap justify-between flex-col">
 						<li>
@@ -56,11 +69,15 @@
 						</li>
 						<li>
 							<!-- svelte-ignore a11y-invalid-attribute -->
-							<a href="experience" class="nav">Contact</a>
+							<a href="contact" class="nav">Contact</a>
 						</li>
 					</ul>
 				</div>
-				<div class="md:relative md:bottom-0">
+				<div
+					class="md:relative md:bottom-0 opacity-0"
+					animation-type="animate__fadeInLeft"
+					animation-delay="500ms"
+				>
 					<h2 class="font-bold my-4 md:my-12">Socials</h2>
 					<ul class="flex flex-wrap justify-between flex-col">
 						<li>
@@ -92,29 +109,6 @@
 		-ms-transition: all 300ms ease-in-out;
 		-o-transition: all 300ms ease-in-out;
 		transition: all 300ms ease-in-out;
-	}
-	:global(:root.dark::selection) {
-		background: #e0e2dc;
-		color: #2d2f31;
-
-		/* WebKit/Blink Browsers */
-	}
-	:global(:root.dark::-moz-selection) {
-		background: #e0e2dc;
-		color: #2d2f31;
-		/* Gecko Browsers */
-	}
-	:global(:root:not(.dark)::selection) {
-		background: #2d2f31;
-		color: #e0e2dc;
-
-		/* WebKit/Blink Browsers */
-	}
-	:global(:root:not(.dark)::-moz-selection) {
-		background: #2d2f31;
-		color: #e0e2dc;
-
-		/* WebKit/Blink Browsers */
 	}
 	:global(a:not(.nav)) {
 		overflow-wrap: break-word;

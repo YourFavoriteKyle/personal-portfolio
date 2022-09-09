@@ -13,7 +13,11 @@
 </script>
 
 <!-- Pin to top right corner -->
-<div class="flex flex-col items-center absolute md:fixed top-0 right-0 p-8">
+<div
+	class="flex flex-col items-center absolute md:fixed top-0 right-0 p-8"
+	animation-type="animate__fadeInDown"
+	animation-delay="1000ms"
+>
 	<div />
 	<label class="switch bg-primary-dark dark:bg-primary-light">
 		<input on:click={toggleTheme} bind:checked={themeInput} type="checkbox" />
