@@ -19,7 +19,7 @@
 	animation-delay="1000ms"
 >
 	<div />
-	<label class="switch bg-primary-dark dark:bg-primary-light">
+	<label class="switch cursor-pointer bg-primary-dark dark:bg-primary-light">
 		<input on:click={toggleTheme} bind:checked={themeInput} type="checkbox" />
 		<div>
 			<svg
@@ -54,14 +54,12 @@
 		width: 3em;
 		border-radius: 1em;
 	}
-
 	.switch input {
 		display: none;
 		opacity: 0;
 		height: 1.5em;
 		width: 3em;
 	}
-
 	.switch div {
 		padding: 0 0.3em;
 		height: 1.5em;
@@ -74,7 +72,6 @@
 		-o-transition: all 250ms ease-in-out;
 		transition: all 250ms ease-in-out;
 	}
-
 	.switch div svg {
 		height: 1em;
 		width: 1em;
@@ -84,25 +81,18 @@
 		-o-transition: opacity 175ms ease-in-out 75ms;
 		transition: opacity 175ms ease-in-out 75ms;
 	}
-
 	.switch div > #moon {
 		opacity: 1;
 	}
-
 	.switch div > #sun {
 		opacity: 0;
 	}
-
-	/* The :checked state does not trigger when the checked value is driven via store updates */
-
 	.switch input:checked + div > #sun {
 		opacity: 1;
 	}
-
 	.switch input:checked + div > #moon {
 		opacity: 0;
 	}
-
 	.switch input:checked + div {
 		-webkit-transform: translate3d(10%, 0, 0);
 		-moz-transform: translate3d(10%, 0, 0);

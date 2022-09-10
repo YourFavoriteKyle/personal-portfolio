@@ -15,9 +15,9 @@
 <h1 class="font-bold my-12">Let's Connect!</h1>
 
 <div class="w-full block relative">
-	<form class="relative">
-		<div class="">
-			<div class="row" animation-type="animate__fadeInUp" animation-delay="250ms">
+	<form class="flex flex-col space-y-8">
+		<div class="flex flex-col md:flex-row space-y-8 md:space-y-0 justify-between">
+			<div class="grow md:mr-5" animation-type="animate__fadeInUp" animation-delay="250ms">
 				<input
 					on:focusout={addRequired}
 					class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
@@ -29,7 +29,7 @@
 				<label class="dark:text-primary-light text-primary-dark" for="name-input">Name</label>
 				<span />
 			</div>
-			<div class="row" animation-type="animate__fadeInUp" animation-delay="500ms">
+			<div class="grow" animation-type="animate__fadeInUp" animation-delay="500ms">
 				<input
 					on:focusout={addRequired}
 					class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
@@ -41,40 +41,40 @@
 				<label class="dark:text-primary-light text-primary-dark" for="email-input">Email</label>
 				<span />
 			</div>
-			<div class="" animation-type="animate__fadeInUp" animation-delay="750ms">
-				<input
-					on:focusout={addRequired}
-					class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
-					placeholder=""
-					id="subject-input"
-					type="text"
-					required
-				/>
-				<label class="dark:text-primary-light text-primary-dark" for="subject-input">Subject</label>
-				<span />
-			</div>
-			<div class="" animation-type="animate__fadeInUp" animation-delay="1000ms">
-				<textarea
-					on:focusout={addRequired}
-					class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
-					placeholder=""
-					id="message-input"
-					type="text"
-					required
-				/>
-				<label class="dark:text-primary-light text-primary-dark" for="message-input">Message</label>
-				<span />
-			</div>
-			<div animation-type="animate__fadeInUp" animation-delay="1250ms">
-				<button
-					class="submit-button dark:text-primary-dark text-primary-light hover:text-primary-dark"
-					type="submit"
-				>
-					Commence Digital Delivery!
-					<span class="hover" />
-					<span class="idle dark:bg-primary-light bg-primary-dark" />
-				</button>
-			</div>
+		</div>
+		<div animation-type="animate__fadeInUp" animation-delay="750ms">
+			<input
+				on:focusout={addRequired}
+				class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
+				placeholder=""
+				id="subject-input"
+				type="text"
+				required
+			/>
+			<label class="dark:text-primary-light text-primary-dark" for="subject-input">Subject</label>
+			<span />
+		</div>
+		<div animation-type="animate__fadeInUp" animation-delay="1000ms">
+			<textarea
+				on:focusout={addRequired}
+				class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
+				placeholder=""
+				id="message-input"
+				type="text"
+				required
+			/>
+			<label class="dark:text-primary-light text-primary-dark" for="message-input">Message</label>
+			<span />
+		</div>
+		<div animation-type="animate__fadeInUp" animation-delay="1250ms">
+			<button
+				class="submit-button dark:text-primary-dark text-primary-light hover:text-primary-dark"
+				type="submit"
+			>
+				Commence Digital Delivery!
+				<span class="hover" />
+				<span class="idle dark:bg-primary-light bg-primary-dark" />
+			</button>
 		</div>
 	</form>
 </div>
@@ -96,7 +96,7 @@
 		left: 0;
 		height: 100%;
 	}
-	.idle {
+	.submit-button > .idle {
 		width: 100%;
 		z-index: -2;
 	}
@@ -109,25 +109,6 @@
 	.submit-button:hover > .hover {
 		width: 100%;
 		transition: 0.3s;
-	}
-	.row {
-		width: 49%;
-		margin-left: 2%;
-		float: left;
-		clear: none;
-	}
-	form > div > div.row:first-child {
-		margin-left: 0;
-	}
-	form > div > div {
-		padding: 0;
-		margin: 0;
-		list-style: none;
-		margin-bottom: 30px;
-		opacity: 0;
-		display: block;
-		clear: both;
-		position: relative;
 	}
 	.input-field {
 		background: transparent;
