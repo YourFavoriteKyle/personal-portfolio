@@ -14,7 +14,28 @@
 	}
 </script>
 
-<Homepage />
+<div>
+	<h1 class="font-bold my-12">Post Title</h1>
+
+	<p class="mb-8">
+		<a href="https://minimalissimo.shop/product/minimalist-writer-ii" target="_blank"
+			>https://minimalissimo.shop/product/minimalist-writer-ii</a
+		>
+		by <a href="https://manuelmoreale.com/">Manuel Moreale</a>.
+	</p>
+
+	<p class="mb-8">
+		Lorem ipsum dolor sit amet, consectetur <a href="#">random link</a> adipiscing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Vel risus commodo viverra maecenas accumsan lacus
+		vel facilisis volutpat. Vitae aliquet nec ullamcorper sit. Nullam eget felis eget nunc lobortis mattis
+		aliquam. In est ante in nibh mauris. Egestas congue quisque egestas diam in. Facilisi nullam vehicula
+		ipsum a arcu. Nec nam aliquam sem et tortor consequat. Eget mi proin sed libero enim sed faucibus
+		turpis in. Hac habitasse platea dictumst quisque. In aliquam sem fringilla ut. Gravida rutrum quisque
+		non tellus orci ac auctor augue mauris. Accumsan lacus vel facilisis volutpat est velit egestas dui
+		id. At tempor commodo ullamcorper a. Volutpat commodo sed egestas egestas fringilla. Vitae congue
+		eu consequat ac.
+	</p>
+</div>
 
 <h1 class="font-bold my-12">Let's Connect!</h1>
 
@@ -26,7 +47,11 @@
 		on:submit|preventDefault={handleSubmit}
 	>
 		<div class="flex flex-col md:flex-row space-y-8 md:space-y-0 justify-between">
-			<div class="grow md:mr-5" animation-type="animate__fadeInUp" animation-delay="250ms">
+			<div
+				class="grow md:mr-5 opacity-0"
+				animation-type="animate__fadeInUp"
+				animation-delay="250ms"
+			>
 				<input
 					class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
 					placeholder=" "
@@ -38,7 +63,7 @@
 				<label class="dark:text-primary-light text-primary-dark" for="name-input">Name</label>
 				<span />
 			</div>
-			<div class="grow" animation-type="animate__fadeInUp" animation-delay="500ms">
+			<div class="grow opacity-0" animation-type="animate__fadeInUp" animation-delay="500ms">
 				<input
 					class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
 					placeholder=" "
@@ -51,7 +76,7 @@
 				<span />
 			</div>
 		</div>
-		<div animation-type="animate__fadeInUp" animation-delay="750ms">
+		<div class="opacity-0" animation-type="animate__fadeInUp" animation-delay="750ms">
 			<input
 				class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
 				placeholder=" "
@@ -63,7 +88,7 @@
 			<label class="dark:text-primary-light text-primary-dark" for="subject-input">Subject</label>
 			<span />
 		</div>
-		<div animation-type="animate__fadeInUp" animation-delay="1000ms">
+		<div class="opacity-0" animation-type="animate__fadeInUp" animation-delay="1000ms">
 			<textarea
 				class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
 				placeholder=" "
@@ -75,7 +100,7 @@
 			<label class="dark:text-primary-light text-primary-dark" for="message-input">Message</label>
 			<span />
 		</div>
-		<div animation-type="animate__fadeInUp" animation-delay="1250ms">
+		<div class="opacity-0" animation-type="animate__fadeInUp" animation-delay="1250ms">
 			<button
 				class="submit-button dark:text-primary-dark text-primary-light hover:text-primary-dark"
 			>
