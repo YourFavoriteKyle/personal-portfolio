@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Homepage from '../+page.svelte';
 	import { addAnimation } from '$lib/Animation';
 	import { onMount } from 'svelte';
 
@@ -37,7 +36,7 @@
 	</p>
 
 	<p class="mb-8">
-		Lorem ipsum dolor sit amet, consectetur <a href="#">random link</a> adipiscing elit, sed do eiusmod
+		Lorem ipsum dolor sit amet, consectetur <a href="/">random link</a> adipiscing elit, sed do eiusmod
 		tempor incididunt ut labore et dolore magna aliqua. Vel risus commodo viverra maecenas accumsan lacus
 		vel facilisis volutpat. Vitae aliquet nec ullamcorper sit. Nullam eget felis eget nunc lobortis mattis
 		aliquam. In est ante in nibh mauris. Egestas congue quisque egestas diam in. Facilisi nullam vehicula
