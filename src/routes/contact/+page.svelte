@@ -10,6 +10,9 @@
 <h1 class="font-bold my-12">Let's Connect!</h1>
 
 <div class="w-full block relative">
+	<form
+		class="flex flex-col space-y-8"
+	>
 		<div class="flex flex-col md:flex-row space-y-8 md:space-y-0 justify-between">
 			<div class="grow md:mr-5" animation-type="animate__fadeInUp" animation-delay="250ms">
 				<input
