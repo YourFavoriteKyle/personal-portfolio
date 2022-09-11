@@ -4,6 +4,8 @@ import { EMAIL, EMAIL_KEY } from '$env/static/private';
 
 const transporter = nodemailer.createTransport({
 	host: 'smtp.gmail.com',
+	port: 465,
+	secure: true,
 	auth: {
 		user: EMAIL,
 		pass: EMAIL_KEY
