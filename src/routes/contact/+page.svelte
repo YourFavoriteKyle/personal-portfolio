@@ -1,7 +1,16 @@
 <script lang="ts">
 	import Homepage from '../+page.svelte';
 
+	async function handleSubmit(event: Event) {
+		const target = <HTMLFormElement>event.target;
+		const formData = new FormData(target);
+		const submit = await fetch(target.action, {
+			method: 'POST',
+			body: formData
+		});
 
+		/** @type {import('@sveltejs/kit').ActionResult} */
+		const response = await submit.json();
 	}
 </script>
 
@@ -12,6 +21,9 @@
 <div class="w-full block relative">
 	<form
 		class="flex flex-col space-y-8"
+		method="POST"
+		enctype="multipart/form-data"
+		on:submit|preventDefault={handleSubmit}
 	>
 		<div class="flex flex-col md:flex-row space-y-8 md:space-y-0 justify-between">
 			<div class="grow md:mr-5" animation-type="animate__fadeInUp" animation-delay="250ms">
@@ -20,6 +32,7 @@
 					placeholder=" "
 					id="name-input"
 					type="text"
+					name="name"
 					required
 				/>
 				<label class="dark:text-primary-light text-primary-dark" for="name-input">Name</label>
@@ -31,6 +44,7 @@
 					placeholder=" "
 					id="email-input"
 					type="email"
+					name="email"
 					required
 				/>
 				<label class="dark:text-primary-light text-primary-dark" for="email-input">Email</label>
@@ -43,6 +57,7 @@
 				placeholder=" "
 				id="subject-input"
 				type="text"
+				name="subject"
 				required
 			/>
 			<label class="dark:text-primary-light text-primary-dark" for="subject-input">Subject</label>
@@ -54,6 +69,7 @@
 				placeholder=" "
 				id="message-input"
 				type="text"
+				name="message"
 				required
 			/>
 			<label class="dark:text-primary-light text-primary-dark" for="message-input">Message</label>
