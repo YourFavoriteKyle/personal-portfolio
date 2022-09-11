@@ -1,12 +1,7 @@
 <script lang="ts">
 	import Homepage from '../+page.svelte';
 
-	function addRequired(event: Event) {
-		const element = <HTMLInputElement>event.target;
 
-		if (element.required) {
-			element.classList.add('required');
-		}
 	}
 </script>
 
@@ -15,13 +10,11 @@
 <h1 class="font-bold my-12">Let's Connect!</h1>
 
 <div class="w-full block relative">
-	<form class="flex flex-col space-y-8">
 		<div class="flex flex-col md:flex-row space-y-8 md:space-y-0 justify-between">
 			<div class="grow md:mr-5" animation-type="animate__fadeInUp" animation-delay="250ms">
 				<input
-					on:focusout={addRequired}
 					class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
-					placeholder=""
+					placeholder=" "
 					id="name-input"
 					type="text"
 					required
@@ -31,9 +24,8 @@
 			</div>
 			<div class="grow" animation-type="animate__fadeInUp" animation-delay="500ms">
 				<input
-					on:focusout={addRequired}
 					class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
-					placeholder=""
+					placeholder=" "
 					id="email-input"
 					type="email"
 					required
@@ -44,9 +36,8 @@
 		</div>
 		<div animation-type="animate__fadeInUp" animation-delay="750ms">
 			<input
-				on:focusout={addRequired}
 				class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
-				placeholder=""
+				placeholder=" "
 				id="subject-input"
 				type="text"
 				required
@@ -56,9 +47,8 @@
 		</div>
 		<div animation-type="animate__fadeInUp" animation-delay="1000ms">
 			<textarea
-				on:focusout={addRequired}
 				class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
-				placeholder=""
+				placeholder=" "
 				id="message-input"
 				type="text"
 				required
@@ -69,7 +59,6 @@
 		<div animation-type="animate__fadeInUp" animation-delay="1250ms">
 			<button
 				class="submit-button dark:text-primary-dark text-primary-light hover:text-primary-dark"
-				type="submit"
 			>
 				Commence Digital Delivery!
 				<span class="hover" />
@@ -171,32 +160,45 @@
 		width: 50%;
 		transition: 0.3s;
 	}
-	.input-field:focus ~ label {
+	.input-field:not(:placeholder-shown) ~ span:before {
+		background: linear-gradient(to right, #ad0014, #d11d2c);
+	}
+	.input-field:not(:placeholder-shown) ~ span:after {
+		background: linear-gradient(to right, #d11d2c, #f64646);
+	}
+	.input-field:not(:placeholder-shown) ~ span:before,
+	.input-field:not(:placeholder-shown) ~ span:after {
+		width: 50%;
+		transition: 0.3s;
+	}
+	.input-field:not(:placeholder-shown) ~ label {
 		top: -16px;
 		font-size: 13px;
-		color: #e16c46;
+		color: #d11d2c;
 		transition: 0.3s;
+	}
+	.input-field:valid ~ span:before {
+		background: inherit;
+	}
+	.input-field:valid ~ span:after {
+		background: inherit;
 	}
 	.input-field:valid ~ label {
 		top: -16px;
 		font-size: 13px;
+		color: inherit;
 		transition: 0.3s;
 	}
-	:global(.input-field.required:invalid) ~ span:before {
-		background: linear-gradient(to right, #ad0014, #d11d2c);
+	.input-field:focus ~ span:before {
+		background: linear-gradient(to right, #e16c46, #e98b5c);
 	}
-	:global(.input-field.required:invalid) ~ span:after {
-		background: linear-gradient(to right, #d11d2c, #f64646);
+	.input-field:focus ~ span:after {
+		background: linear-gradient(to right, #e98b5c, #f0a776);
 	}
-	:global(.input-field.required:invalid) ~ span:before,
-	:global(.input-field.required:invalid) ~ span:after {
-		width: 50%;
-		transition: 0.3s;
-	}
-	:global(.input-field.required:invalid) ~ label {
+	.input-field:focus ~ label {
 		top: -16px;
 		font-size: 13px;
-		color: #d11d2c;
+		color: #e16c46;
 		transition: 0.3s;
 	}
 </style>
