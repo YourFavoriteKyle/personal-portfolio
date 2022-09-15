@@ -2,6 +2,7 @@
 	import '../app.postcss';
 	import ThemeButton from '$lib/ThemeButton/index.svelte';
 	import Nav from '$lib/Nav/index.svelte';
+	import PageTransition from '$lib/PageTransition/index.svelte';
 	import { addAnimation } from '../lib/Animation';
 	import { themeState } from '../stores/theme';
 	import { onMount } from 'svelte';
@@ -81,7 +82,9 @@
 		</div>
 		<div class="w-full md:w-2/3 order-1 md:order-2">
 			<div id="mainContent" class="max-w-2xl leading-loose tracking-tight">
-				<slot />
+				<PageTransition>
+					<slot />
+				</PageTransition>
 			</div>
 		</div>
 	</div>

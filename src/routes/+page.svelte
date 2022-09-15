@@ -1,4 +1,4 @@
-<h1 class="font-bold my-12">Post Title</h1>
+<h1 class="font-bold my-12">Hey there! I'm Kyle!</h1>
 
 <p class="mb-8">
 	<a href="https://minimalissimo.shop/product/minimalist-writer-ii" target="_blank"
