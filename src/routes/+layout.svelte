@@ -69,6 +69,10 @@
 						</li>
 						<li>
 							<!-- svelte-ignore a11y-invalid-attribute -->
+							<a href="activity" class="nav">Recent Activity</a>
+						</li>
+						<li>
+							<!-- svelte-ignore a11y-invalid-attribute -->
 							<a href="contact" class="nav">Contact</a>
 						</li>
 					</ul>
