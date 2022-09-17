@@ -58,11 +58,7 @@
 		on:submit|preventDefault={handleSubmit}
 	>
 		<div class="flex flex-col md:flex-row space-y-8 md:space-y-0 justify-between">
-			<div
-				class="grow md:mr-5 opacity-0"
-				animation-type="animate__fadeInUp"
-				animation-delay="250ms"
-			>
+			<div class="grow md:mr-5 relative">
 				<input
 					class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
 					placeholder=" "
@@ -74,7 +70,7 @@
 				<label class="dark:text-primary-light text-primary-dark" for="name-input">Name</label>
 				<span />
 			</div>
-			<div class="grow opacity-0" animation-type="animate__fadeInUp" animation-delay="500ms">
+			<div class="grow relative">
 				<input
 					class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
 					placeholder=" "
@@ -87,7 +83,7 @@
 				<span />
 			</div>
 		</div>
-		<div class="opacity-0" animation-type="animate__fadeInUp" animation-delay="750ms">
+		<div class="relative">
 			<input
 				class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
 				placeholder=" "
@@ -99,7 +95,7 @@
 			<label class="dark:text-primary-light text-primary-dark" for="subject-input">Subject</label>
 			<span />
 		</div>
-		<div class="opacity-0" animation-type="animate__fadeInUp" animation-delay="1000ms">
+		<div class="relative">
 			<textarea
 				class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
 				placeholder=" "
@@ -111,7 +107,7 @@
 			<label class="dark:text-primary-light text-primary-dark" for="message-input">Message</label>
 			<span />
 		</div>
-		<div class="opacity-0" animation-type="animate__fadeInUp" animation-delay="1250ms">
+		<div>
 			<button
 				class="submit-button dark:text-primary-dark text-primary-light hover:text-primary-dark"
 			>
@@ -129,6 +125,7 @@
 		height: 50px;
 		padding: 0 20px;
 		transition: 0.3s;
+		z-index: 0;
 	}
 	.submit-button,
 	.submit-button > span {
@@ -207,7 +204,6 @@
 		width: 100%;
 		top: 9px;
 		transition: 0.3s;
-		z-index: -1;
 		letter-spacing: 0.5px;
 	}
 	.input-field:focus ~ span:before,
