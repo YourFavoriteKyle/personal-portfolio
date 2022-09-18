@@ -1,6 +1,8 @@
 <script lang="ts">
 	import '../app.postcss';
-	import ThemeButton from '../lib/ThemeButton/index.svelte';
+	import ThemeButton from '$lib/ThemeButton/index.svelte';
+	import Nav from '$lib/Nav/index.svelte';
+	import PageTransition from '$lib/PageTransition/index.svelte';
 	import { addAnimation } from '../lib/Animation';
 	import { themeState } from '../stores/theme';
 	import { onMount } from 'svelte';
@@ -53,48 +55,36 @@
 					animation-type="animate__fadeInLeft"
 					animation-delay="250ms"
 				>
-					<h2 class="font-bold my-4 md:my-12">Article List Column</h2>
-					<ul class="flex flex-wrap justify-between flex-col">
-						<li>
-							<!-- svelte-ignore a11y-invalid-attribute -->
-							<a href="/" class="nav">Home</a>
-						</li>
-						<li>
-							<!-- svelte-ignore a11y-invalid-attribute -->
-							<a href="about" class="nav">About Me</a>
-						</li>
-						<li>
-							<!-- svelte-ignore a11y-invalid-attribute -->
-							<a href="experience" class="nav">Experience</a>
-						</li>
-						<li>
-							<!-- svelte-ignore a11y-invalid-attribute -->
-							<a href="contact" class="nav">Contact</a>
-						</li>
-					</ul>
+					<Nav
+						header={"Kyle's Guide"}
+						routes={[
+							{ ref: '/', name: 'Home' },
+							{ ref: 'about', name: 'About' },
+							{ ref: 'experience', name: 'Experience' },
+							{ ref: 'contact', name: 'Contact' }
+						]}
+					/>
 				</div>
 				<div
 					class="md:relative md:bottom-0 opacity-0"
 					animation-type="animate__fadeInLeft"
 					animation-delay="500ms"
 				>
-					<h2 class="font-bold my-4 md:my-12">Socials</h2>
-					<ul class="flex flex-wrap justify-between flex-col">
-						<li>
-							<!-- svelte-ignore a11y-invalid-attribute -->
-							<a href="about" class="nav">GitHub</a>
-						</li>
-						<li>
-							<!-- svelte-ignore a11y-invalid-attribute -->
-							<a href="/" class="nav">LinkedIn</a>
-						</li>
-					</ul>
+					<Nav
+						header={'Socials'}
+						routes={[
+							{ ref: '/', name: 'GitHub' },
+							{ ref: '/', name: 'LinkedIn' }
+						]}
+					/>
 				</div>
 			</div>
 		</div>
 		<div class="w-full md:w-2/3 order-1 md:order-2">
-			<div class="max-w-2xl leading-loose tracking-tight">
-				<slot />
+			<div id="mainContent" class="max-w-2xl leading-loose tracking-tight">
+				<PageTransition>
+					<slot />
+				</PageTransition>
 			</div>
 		</div>
 	</div>
@@ -126,7 +116,8 @@
 		-o-transition: all 150ms ease-in-out;
 		transition: all 150ms ease-in-out;
 	}
-	:global(a:hover) {
+	:global(a:hover, a:active, a:focus) {
+		outline: none;
 		color: #e16c46;
 		font-weight: bold;
 		text-decoration: none;
@@ -140,8 +131,5 @@
 		-ms-transition: color 150ms ease-in-out;
 		-o-transition: color 150ms ease-in-out;
 		transition: color 150ms ease-in-out;
-	}
-	a:focus {
-		outline: #e16c46 dashed 3px;
 	}
 </style>
