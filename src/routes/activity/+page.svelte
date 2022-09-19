@@ -1,20 +1,14 @@
 <script lang="ts">
-	import data from './data.json';
-	const eventData = <Array<Object>>data;
-
-	let repos = [];
-
-	eventData.map(function (event) {
-		console.log(event);
-	});
+	/** @type {import('./$types').PageData} */
+	export let data: any;
 </script>
 
 <h1 class="font-bold my-12">What I've Been Working On...</h1>
 
 <div class="flex flex-wrap">
-	{#each eventData as event}
+	{#each data.eventData as event}
 		<div
-			class="w-[46%] mb-8 mx-[1%] p-4 text-center text-primary-dark dark:text-primary-light relative"
+			class="w-[46%] mt-auto mb-8 mx-[1%] p-4 text-center text-primary-dark dark:text-primary-light relative"
 		>
 			<h4 class="bar-parent leading-normal pb-4 relative z-[3]">
 				I performed a {event.type} on <br /><a href="github.com">{event.repo.name}</a>
