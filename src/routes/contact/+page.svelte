@@ -97,7 +97,7 @@
 		</div>
 		<div class="relative">
 			<textarea
-				class="input-field dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
+				class="input-field block dark:text-primary-light text-primary-dark dark:border-primary-light border-primary-dark"
 				placeholder=" "
 				id="message-input"
 				type="text"
@@ -166,9 +166,6 @@
 	textarea.input-field {
 		min-height: 150px;
 		padding: 20px;
-	}
-	textarea.input-field ~ span {
-		bottom: 10px;
 	}
 	.input-field ~ span {
 		position: absolute;
