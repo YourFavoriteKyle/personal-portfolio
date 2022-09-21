@@ -1,31 +1,166 @@
 <script lang="ts">
+	import type { Endpoints } from '@octokit/types';
+
+	type PublicUserEvents = Endpoints['GET /users/{username}/events/public']['response'];
+	type NamedEvent = {
+		display: string;
+		verboseAction: string;
+		event: PublicUserEvents['data'][0];
+	};
+
 	/** @type {import('./$types').PageData} */
-	export let data: any;
+	export let data: PublicUserEvents;
+
+	let actions = data.data.map(getEventType);
+
+	function createNamedEvent(
+		event: PublicUserEvents['data'][0],
+		display: string,
+		verboseAction: string = ''
+	): NamedEvent {
+		return { display, event, verboseAction };
+	}
+
+	function getEventAction(event: PublicUserEvents['data'][1]): string {
+		switch (event.payload.action) {
+			case undefined: {
+				return '';
+			}
+			case 'review_requested': {
+				return 'requested a review on';
+			}
+			case 'review_request_removed': {
+				return 'removed my review request from';
+			}
+			// TODO: Figure out what synchronize refers to
+			case 'synchronize': {
+				return 'synchronized';
+			}
+			default: {
+				return event.payload.action;
+			}
+		}
+	}
+
+	function getEventType(event: PublicUserEvents['data'][1]): NamedEvent | undefined {
+		switch (event.type) {
+			// Is an action event
+			// {action: 'created'}
+			case 'CommitCommentEvent': {
+				return createNamedEvent(event, 'I commented on a commit.', getEventAction(event));
+			}
+			// {ref_type: 'branch' | 'tag'}
+			case 'CreateEvent': {
+				return createNamedEvent(event, 'I created $d a on', event.payload.ref_type);
+			}
+			// {ref_type: 'branch' | 'tag'}
+			case 'DeleteEvent': {
+				return createNamedEvent(event, 'I deleted a $d on', getEventAction(event));
+			}
+			// Only payload is link to forkee
+			case 'ForkEvent': {
+				return createNamedEvent(event, 'I ', 'forked');
+			}
+			// This is for wiki events
+			case 'GollumEvent': {
+				console.error('This event is not implemented yet: ' + event);
+				break;
+			}
+			// Is an action event
+			// {action: 'created' | 'edited' | 'deleted'}
+			case 'IssueCommentEvent': {
+				return createNamedEvent(event, 'I $d a comment on an issue.', getEventAction(event));
+			}
+			// Is an action event
+			// {action: 'opened' | 'edited' | 'closed' | 'reopened' | 'assigned' | 'unassigned' | 'labeled' | 'unlabled'}
+			case 'IssuesEvent': {
+				return createNamedEvent(event, 'I $d an issue.', getEventAction(event));
+			}
+			//  Is an action event
+			// {action: 'added'}
+			case 'MemberEvent': {
+				break;
+			}
+			// Payload will be empty
+			case 'PublicEvent': {
+				return createNamedEvent(event, 'I made a repository public.');
+			}
+			// Is an action event
+			// {action: 'opened' | 'edited' | 'closed' | 'reopened' | 'assigned' | 'unassigned' | 'review_requested' | 'review_request_removed' | 'labled' | 'unlabeled' | 'synchronize'}
+			case 'PullRequestEvent': {
+				return createNamedEvent(event, 'I $d a pull request.', getEventAction(event));
+			}
+			// Is an action event
+			// {action: 'created'}
+			case 'PullRequestReviewEvent': {
+				return createNamedEvent(event, 'I $d a pull request review.', getEventAction(event));
+			}
+			// Is an action event
+			// {action: 'created'}
+			case 'PullRequestReviewCommentEvent': {
+				return createNamedEvent(event, 'I commented on a pull request review.');
+			}
+			// Is an action event
+			// {action: 'resolved' | 'unresolved'}
+			case 'PullRequestReviewThreadEvent': {
+				// TODO: Come back to this display text
+				return createNamedEvent(event, 'I $d a pull request.', getEventAction(event));
+			}
+			case 'PushEvent': {
+				return createNamedEvent(event, `I pushed ${event.payload.distinct_size} commits.`);
+			}
+			// Is an action event
+			// {action: 'published'}
+			case 'ReleaseEvent': {
+				return createNamedEvent(event, 'I $d a release.', getEventAction(event));
+			}
+			// Is an action event
+			// {action: 'created'}
+			case 'SponsorshipEvent': {
+				// TODO: Come back to this display text
+				return createNamedEvent(event, 'I started sponsoring a repository.');
+			}
+			// Is an action event
+			// {action: 'started'}
+			case 'WatchEvent': {
+				return createNamedEvent(event, 'I started watching a repository.', getEventAction(event));
+			}
+			default: {
+				console.error('An unexpected event was returned: ' + event);
+				break;
+			}
+		}
+	}
 </script>
 
 <h1 class="font-bold my-12">What I've Been Working On...</h1>
 
 <div class="flex flex-wrap">
-	{#each data.eventData as event}
-		<div
-			class="w-[46%] mt-auto mb-8 mx-[1%] p-4 text-center text-primary-dark dark:text-primary-light relative"
-		>
-			<h4 class="bar-parent leading-normal pb-4 relative z-[3]">
-				I performed a {event.type} on <br /><a href="github.com">{event.repo.name}</a>
-				<span class="swipe-down dark:bg-primary-dark bg-primary-light" />
-			</h4>
-			<span class="bar z-[4] dark:bg-primary-light bg-primary-dark" />
-			<div class="flex justify-around pt-3 relative bottom-text z-[2]">
-				<p class="px-2">193 Watchers</p>
-				<p class="px-2">193 Stargazers</p>
-				<span class="swipe-up dark:bg-primary-dark bg-primary-light" />
+	{#each actions as action}
+		{@const re = new RegExp('\\$\\w', 'gm')}
+		{#if action}
+			<div
+				class="w-[46%] mt-auto mb-8 mx-[1%] p-4 text-center text-primary-dark dark:text-primary-light relative"
+			>
+				<h4 class="bar-parent leading-normal pb-4 relative z-[3]">
+					{action.display.replace(re, action.verboseAction)} <br /><a href="github.com"
+						>{action?.event.repo.name}</a
+					>
+					<span class="swipe-down dark:bg-primary-dark bg-primary-light" />
+				</h4>
+				<span class="bar z-[4] dark:bg-primary-light bg-primary-dark" />
+				<div class="flex justify-around pt-3 relative bottom-text z-[2]">
+					<p class="px-2">193 Watchers</p>
+					<p class="px-2">193 Stargazers</p>
+					<span class="swipe-up dark:bg-primary-dark bg-primary-light" />
+				</div>
+				<div class="arrow w-1/2 p-2 inline-block text-center cursor-pointer">
+					<figure
+						class="border-r-2 border-b-2 inline-block origin-center rotate-45 dark:border-primary-light border-primary-dark"
+					/>
+				</div>
 			</div>
-			<div class="arrow w-1/2 p-2 inline-block text-center cursor-pointer">
-				<figure
-					class="border-r-2 border-b-2 inline-block origin-center rotate-45 dark:border-primary-light border-primary-dark"
-				/>
-			</div>
-		</div>
+		{/if}
 	{/each}
 </div>
 
