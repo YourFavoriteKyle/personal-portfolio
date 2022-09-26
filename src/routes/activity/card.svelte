@@ -1,16 +1,14 @@
 <script lang="ts">
 	import type { NamedEvent } from './+page.svelte';
-	import Expanded from './expanded.svelte';
-	export let action: NamedEvent;
-	export let expanded: boolean = false;
+	import { activityEvents } from '../../stores/activityCards';
+
+	export let activity: NamedEvent;
 </script>
 
-<div
-	class="w-[44%] mt-auto mb-8 mx-[3%] p-4 text-center text-primary-dark dark:text-primary-light relative"
->
+<div class="mt-auto mx-[3%] p-4 text-center text-primary-dark dark:text-primary-light relative">
 	<h4 class="bar-parent leading-normal pb-4 relative z-[3]">
-		{action.display[0]}
-		{action.verboseAction}{action.display[1]}<a href="github.com">{action.item}</a>{action
+		{activity.display[0]}
+		{activity.verboseAction}{activity.display[1]}<a href="github.com">{activity.item}</a>{activity
 			.display[2]}
 		<span class="swipe-down dark:bg-primary-dark bg-primary-light" />
 	</h4>
@@ -20,12 +18,24 @@
 		<p class="px-2">193 Stargazers</p>
 		<span class="swipe-up dark:bg-primary-dark bg-primary-light" />
 	</div>
-	<div class="arrow w-1/2 p-2 inline-block text-center cursor-pointer">
+	<div
+		on:click={() => {
+			for (let i = 0; i < $activityEvents.length; i++) {
+				if (
+					$activityEvents[i].event.id != activity.event.id &&
+					$activityEvents[i].expanded == true
+				) {
+					$activityEvents[i].expanded = false;
+				}
+			}
+			activity.expanded = !activity.expanded;
+		}}
+		class="arrow w-1/2 p-2 inline-block text-center cursor-pointer"
+	>
 		<figure
 			class="border-r-2 border-b-2 inline-block origin-center rotate-45 dark:border-primary-light border-primary-dark"
 		/>
 	</div>
-	<!-- <Expanded {action} /> -->
 </div>
 
 <style>

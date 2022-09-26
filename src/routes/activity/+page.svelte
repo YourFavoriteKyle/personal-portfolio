@@ -1,6 +1,8 @@
 <script lang="ts" context="module">
 	import type { Endpoints } from '@octokit/types';
 	import Card from './card.svelte';
+	import Expanded from './expanded.svelte';
+	import { activityEvents } from '../../stores/activityCards';
 
 	type PublicUserEvents = Endpoints['GET /users/{username}/events/public']['response'];
 
@@ -8,6 +10,7 @@
 		display: string[];
 		verboseAction: string;
 		item: string;
+		expanded: boolean;
 		event: PublicUserEvents['data'][0];
 	};
 	export type NamedEventData = {
@@ -21,7 +24,9 @@
 	/** @type {import('./$types').PageData} */
 	export let data: PublicUserEvents;
 
-	let actions = data.data.map(getEventType);
+	activityEvents.set(
+		<NamedEvent[]>data.data.map(getEventType).filter((event) => event !== undefined)
+	);
 
 	function createNamedEvent(
 		event: PublicUserEvents['data'][0],
@@ -31,7 +36,8 @@
 			display: eventData.display,
 			event: event,
 			item: eventData.item,
-			verboseAction: eventData.verboseAction
+			verboseAction: eventData.verboseAction,
+			expanded: false
 		};
 	}
 
@@ -223,10 +229,18 @@
 
 <h1 class="font-bold my-12">What I've Been Working On...</h1>
 
-<div class="flex flex-wrap">
-	{#each actions as action}
-		{#if action}
-			<Card {action} />
+<div class="grid">
+	{#each $activityEvents as activity (activity.event.id)}
+		<Card bind:activity />
+		{#if activity.expanded}
+			<Expanded {activity} />
 		{/if}
 	{/each}
 </div>
+
+<style>
+	div.grid {
+		grid-template-columns: repeat(auto-fit, 50%);
+		grid-auto-flow: dense;
+	}
+</style>
