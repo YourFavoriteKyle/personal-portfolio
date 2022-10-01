@@ -178,15 +178,15 @@
 				});
 			}
 			case 'PushEvent': {
-				if (event.payload.distinct_size > 1) {
+				if (event.payload.size > 1) {
 					return createNamedEvent(event, {
-						display: ['I ', ` ${event.payload.distinct_size} `, '.'],
+						display: ['I ', ` ${event.payload.size} `, '.'],
 						verboseAction: 'pushed',
 						item: 'commits'
 					});
 				}
 				return createNamedEvent(event, {
-					display: ['I ', ` ${event.payload.distinct_size} `, '.'],
+					display: ['I ', ` ${event.payload.size} `, '.'],
 					verboseAction: 'pushed',
 					item: 'commit'
 				});

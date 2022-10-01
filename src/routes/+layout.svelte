@@ -107,12 +107,12 @@
 </div>
 
 <style>
-	.main-container {
-		-webkit-transition: all 300ms ease-in-out;
-		-moz-transition: all 300ms ease-in-out;
-		-ms-transition: all 300ms ease-in-out;
-		-o-transition: all 300ms ease-in-out;
-		transition: all 300ms ease-in-out;
+	:global(*) {
+		-webkit-transition: background-color 300ms ease-in-out;
+		-moz-transition: background-color 300ms ease-in-out;
+		-ms-transition: background-color 300ms ease-in-out;
+		-o-transition: background-color 300ms ease-in-out;
+		transition: background-color 300ms ease-in-out;
 	}
 	:global(a:not(.nav)) {
 		overflow-wrap: break-word;
