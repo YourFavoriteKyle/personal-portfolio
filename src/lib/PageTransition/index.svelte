@@ -15,11 +15,11 @@
 </script>
 
 {#if !!animations}
-	<div in:fly={{ x: -50, duration: 1000, delay: 500, easing: quintOut }}>
+	<div in:fly={{ y: 50, duration: 750, delay: 500, easing: quintOut }}>
 		{#key $navigating?.to?.url.pathname != $navigating?.from?.url.pathname}
 			<div
-				in:fly={{ y: 50, duration: 1000, delay: 1000, easing: quintOut }}
-				out:fly={{ y: 50, duration: 1000, easing: quintOut }}
+				in:fly={{ y: 50, duration: 750, delay: 775, easing: quintOut }}
+				out:fly={{ y: 50, duration: 750, easing: quintOut }}
 			>
 				<slot />
 			</div>
