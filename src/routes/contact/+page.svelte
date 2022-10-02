@@ -1,11 +1,4 @@
 <script lang="ts">
-	import { addAnimation } from '$lib/Animation';
-	import { onMount } from 'svelte';
-
-	onMount(() => {
-		addAnimation(document.querySelectorAll<HTMLElement>('[animation-type]'));
-	});
-
 	async function handleSubmit(event: Event) {
 		const target = <HTMLFormElement>event.target;
 		const formData = new FormData(target);
@@ -18,12 +11,6 @@
 		const response = await submit.json();
 	}
 </script>
-
-<svelte:window
-	on:scroll={() => {
-		addAnimation(document.querySelectorAll('[animation-type]'));
-	}}
-/>
 
 <div>
 	<h1 class="font-bold my-12">Post Title</h1>
