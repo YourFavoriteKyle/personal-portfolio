@@ -202,6 +202,7 @@
 		top: 9px;
 		transition: 0.3s;
 		letter-spacing: 0.5px;
+		cursor: text;
 	}
 	.input-field:focus ~ span:before,
 	.input-field:focus ~ span:after {
